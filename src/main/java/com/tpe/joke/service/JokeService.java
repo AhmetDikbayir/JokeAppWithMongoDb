@@ -31,23 +31,25 @@ public class JokeService {
         jokeRepository.save(joke);
     }
 
-    public ResponseEntity<String> deleteById(String  id) {
-        jokeRepository.deleteById(id);
-        return ResponseEntity.ok(SuccessMessages.JOKE_DELETED_SUCCESSFULY);
-    }
 
-    public Optional<Joke> getJokeById(String id) {
+
+    public Optional<Joke> getJokeById(ObjectId id) {
         return jokeRepository.findById(id);
     }
 
-//    public Joke addComment(String id, Comment comment) {
-//        Optional<Joke> jokeOpt = jokeRepository.findById(id);
-//        if (jokeOpt.isPresent()) {
-//            Joke joke = jokeOpt.get();
-//            joke.getComment().add(comment);
-//            return jokeRepository.save(joke);
-//        } else {
-//            throw new RuntimeException("Joke not found with id: " + id);
-//        }
-//    }
+    public String deleteById(ObjectId id) {
+        jokeRepository.deleteById(id);
+        return SuccessMessages.JOKE_DELETED_SUCCESSFULY;
+    }
+
+    public Joke addComment(ObjectId id, Comment comment) {
+        Optional<Joke> jokeOpt = jokeRepository.findById(id);
+        if (jokeOpt.isPresent()) {
+            Joke joke = jokeOpt.get();
+            joke.getComment().add(comment);
+            return jokeRepository.save(joke);
+        } else {
+            throw new RuntimeException("Joke not found with id: " + id);
+        }
+    }
 }

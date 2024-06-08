@@ -28,7 +28,7 @@ public class JokeController {
     }
 
     @GetMapping("/getJokeById/{id}")
-    public ResponseEntity<Joke> getJokeById(@PathVariable String id) {
+    public ResponseEntity<Joke> getJokeById(@PathVariable ObjectId id) {
         Optional<Joke> joke = jokeService.getJokeById(id);
         return joke.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
@@ -40,12 +40,12 @@ public class JokeController {
     }
 
     @DeleteMapping("/deleteById/{id}")
-    public ResponseEntity<String> deleteById(@PathVariable String id){
-        return jokeService.deleteById(id);
+    public ResponseEntity<String> deleteById(@PathVariable ObjectId id){
+        return new ResponseEntity<>(jokeService.deleteById(id), HttpStatus.OK);
     }
 
     @PostMapping("/comments/{id}")
-    public ResponseEntity<Joke> addComment(@PathVariable String id, @RequestBody Comment comment) {
+    public ResponseEntity<Joke> addComment(@PathVariable ObjectId id, @RequestBody Comment comment) {
         Joke updatedJoke = jokeService.addComment(id, comment);
         return ResponseEntity.ok(updatedJoke);
     }

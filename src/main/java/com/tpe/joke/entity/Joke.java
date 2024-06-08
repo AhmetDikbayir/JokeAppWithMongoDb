@@ -2,24 +2,29 @@ package com.tpe.joke.entity;
 
 
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.List;
 
 
 @Document(collection = "jokes")
+@Data
 
-@Getter
-@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Joke {
 
-    private String id;
+    @Id
+    private ObjectId id;
     private String kind;
     private String title;
     private String content;
+
+    @DocumentReference
     private List<Comment> comment;
 }
