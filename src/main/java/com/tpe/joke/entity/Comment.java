@@ -8,12 +8,16 @@ import org.springframework.data.mongodb.repository.DeleteQuery;
 
 @Document(collection = "comments")
 @Data
+
 @AllArgsConstructor
 @NoArgsConstructor
 public class Comment {
 
     @Id
     private ObjectId id;
+
     private String title;
     private String body;
+
+
 }

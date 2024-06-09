@@ -50,5 +50,12 @@ public class JokeController {
         return ResponseEntity.ok(updatedJoke);
     }
 
+    //Get All Comments
+    @GetMapping("/getComments/{id}")
+    public ResponseEntity<List<Comment>> getAllComment(@PathVariable ObjectId id){
+        List<Comment> comments = jokeService.getAllComments(id);
+        return ResponseEntity.ok(comments);
+    }
+
 
 }

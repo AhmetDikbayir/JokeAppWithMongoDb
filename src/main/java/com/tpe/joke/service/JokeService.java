@@ -52,4 +52,9 @@ public class JokeService {
             throw new RuntimeException("Joke not found with id: " + id);
         }
     }
+
+    public List<Comment> getAllComments(ObjectId id) {
+        Optional<Joke> joke = jokeRepository.findById(id);
+        return joke.get().getComment();
+    }
 }
