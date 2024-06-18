@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.repository.DeleteQuery;
 
 @Document(collection = "comments")
 @Data
+@Builder(toBuilder = true)
 
 @AllArgsConstructor
 @NoArgsConstructor

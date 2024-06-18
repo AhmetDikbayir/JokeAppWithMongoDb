@@ -21,8 +21,8 @@ public class CommentController {
     private final CommentService commentService;
 
     @PostMapping("/addComment/{id}")
-    public ResponseEntity<String> createComment(@RequestBody Comment comment, @PathVariable ObjectId id){
-        commentService.createComment(comment, id);
+    public ResponseEntity<String> createComment(@RequestBody CommentRequest commentRequest, @PathVariable ObjectId id){
+        commentService.createComment(commentRequest, id);
         return ResponseEntity.ok(SuccessMessages.COMMENT_SAVED_SUCCESSFULLY);
     }
 
